@@ -8,34 +8,27 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
-find_package(tf2 REQUIRED)
-find_package(tf2_ros REQUIRED)
-find_package(tf2_geometry_msgs REQUIRED)
-
+find_package(kobuki_ros_interfaces REQUIRED)
 
 set(dependencies
     rclcpp
     geometry_msgs
-    tf2_geometry_msgs
-    tf2
-    tf2_ros
+    kobuki_ros_interfaces
 )
 
-include_directories(include)
-add_library(${PROJECT_NAME} SHARED
-  src/go_fwd_and_turn/Controller.cpp
-  src/go_fwd_and_turn/Controller2.cpp
+add_library(bumpgo_behavior SHARED
+  src/bumpgo/bumpgo_behavior.cpp
 )
-ament_target_dependencies(${PROJECT_NAME} ${dependencies})
+ament_target_dependencies(bumpgo_behavior ${dependencies})
+target_include_directories(bumpgo_behavior PUBLIC include)
 
-add_executable(bumpgo_node src/bumpgo_node.cpp)
+add_executable(bumpgo_node src/bumpgo_main.cpp)
 ament_target_dependencies(bumpgo_node ${dependencies})
-target_link_libraries(bumpgo_node ${PROJECT_NAME})
-
-
+target_link_libraries(bumpgo_node bumpgo_behavior)
 
 install(TARGETS
   bumpgo_node
+  bumpgo_behavior
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
