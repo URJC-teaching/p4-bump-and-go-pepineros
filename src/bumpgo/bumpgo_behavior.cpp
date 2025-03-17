@@ -109,7 +109,7 @@ namespace bumpgo
     if (last_bump_->state == kobuki_ros_interfaces::msg::BumperEvent::PRESSED) {
         if (!bumper_was_pressed) {  
             bumper_was_pressed = true;
-            
+
             // Si el bumper se presionó por primera vez, cambiamos a AVOID
             return true;  
         }
@@ -118,10 +118,10 @@ namespace bumpgo
     return false;
   }
 
-  // Comprobamos que el robot retroceda lo que queremos
+  // Comprobamos que el giro del Kobuki
   bool BumpGoBehavior::check_turn()
   {
-    // Si ha pasado AVOID_TIME (2s), pasamos a TURN
+    // Si ha pasado TIME (2s), pasamos de estado
     return (now() - state_ts_) > TIME;  
   }
 

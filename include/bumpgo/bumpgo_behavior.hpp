@@ -33,7 +33,7 @@ private:
   // Definimos una variable para almacenar en que estado esta el Kobuki
   int state_;
 
-  // Guardamos el tiempo del último cambio de estado
+  // Guardamos el tiempo del último cambio de estado del Kobuki
   rclcpp::Time state_ts_;  
 
   // Función para cambiar el estado dentro de la maquina de estados

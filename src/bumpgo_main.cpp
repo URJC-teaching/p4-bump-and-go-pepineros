@@ -13,7 +13,7 @@ int main(int argc, char * argv[])
   // Mantenemos el nodo en ejecución con el spin
   rclcpp::spin(bumpgo_node);
 
-  // Finalizamos ROS 2
+  // Finalizamos ROS2
   rclcpp::shutdown();
   
   return 0;
