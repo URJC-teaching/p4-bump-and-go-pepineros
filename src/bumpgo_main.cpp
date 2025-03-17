@@ -4,12 +4,17 @@
 
 int main(int argc, char * argv[])
 {
+  // Iniciamos ros2
   rclcpp::init(argc, argv);
 
+  // Creamos un nodo compartido (make_shared) de tipo "BumpGoBehavior"
   auto bumpgo_node = std::make_shared<bumpgo::BumpGoBehavior>();
 
-  rclcpp::spin(bumpgo_node);  // Ejecutar el nodo en un solo hilo
+  // Mantenemos el nodo en ejecución con el spin
+  rclcpp::spin(bumpgo_node);
 
+  // Finalizamos ROS 2
   rclcpp::shutdown();
+  
   return 0;
 }
